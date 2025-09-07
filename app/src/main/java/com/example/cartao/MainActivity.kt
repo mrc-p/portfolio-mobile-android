@@ -96,7 +96,7 @@ fun CartaoDeVisitas() {
                     .padding(horizontal = 24.dp, vertical = 24.dp)
             ) {
                 ContatoItem(R.drawable.baseline_phone_24, "(84) 996278664")
-                ContatoItem(R.drawable.outline_alternate_email_24, "marcos.paulo.spires@mail.com")
+                ContatoItem(R.drawable.outline_alternate_email_24, "marcos.paulo.spires@gmail.com")
 
                 Spacer(modifier = Modifier.height(24.dp))
                 HorizontalDivider(
