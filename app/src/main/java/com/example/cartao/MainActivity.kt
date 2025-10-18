@@ -116,11 +116,11 @@ fun CartaoDeVisitas(navController: NavHostController) {
                 }
             }
 
-            // Parte Inferior (Branca)
+            // Parte Inferior
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(red = 238, green = 238, blue = 238, alpha = 65))
+                    .background(Color(red = 238, green = 239, blue = 241, alpha = 255))
                     .padding(horizontal = 24.dp, vertical = 24.dp)
             ) {
                 ContatoItem(R.drawable.baseline_phone_24, "(84) 996278664")
