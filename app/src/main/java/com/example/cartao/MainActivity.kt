@@ -135,12 +135,28 @@ fun CartaoDeVisitas(navController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Seção de Redes Sociais
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     ContatoItemHorizontal(R.drawable.ic_github, "GitHub/mrc-p")
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Button(
+                    onClick = { navController.navigate("project_list") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(46.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(red = 37, green = 86, blue = 128, alpha = 255), // Cor do fundo do botão
+                        contentColor = Color.White,
+                    )
+                ) {
+                    Text(text = "Meus Projetos",
+                        fontSize = 17.sp
+                    )
                 }
             }
         }
