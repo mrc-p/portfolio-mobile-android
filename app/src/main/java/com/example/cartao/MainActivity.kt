@@ -37,11 +37,28 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CartaoTheme {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = "profile"
                 ) {
-                    CartaoDeVisitas()
+                    composable("profile") {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CartaoDeVisitas(navController)
+                        }
+                    }
+                    composable("project_list") {
+                        ProjectListScreen(navController)
+                    }
+                    composable("project_detail/{projectId}") { backStackEntry ->
+                        ProjectDetailScreen(
+                            navController,
+                            backStackEntry.arguments?.getString("projectId")?.toIntOrNull()
+                        )
+                    }
                 }
             }
         }
