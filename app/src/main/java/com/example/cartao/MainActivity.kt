@@ -194,17 +194,106 @@ fun ContatoItemHorizontal(iconId: Int, texto: String) {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun CartaoPreview() {
-    CartaoTheme {
-        Box(
+fun BackButton(onClick: () -> Unit) {
+    IconButton(onClick = onClick) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+            contentDescription = "Voltar"
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun getCustomTopAppBarColors(): TopAppBarColors {
+    return TopAppBarDefaults.topAppBarColors(
+        containerColor = Color.White,
+        titleContentColor = Color(red = 12, green = 49, blue = 82),
+        navigationIconContentColor = Color(red = 12, green = 49, blue = 82)
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ProjectListScreen(navController: NavHostController) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "Meus Projetos") },
+                colors = getCustomTopAppBarColors(),
+                navigationIcon = {
+                    BackButton(onClick = { navController.popBackStack() })
+                }
+            )
+        },
+        containerColor = Color.White
+    ) { paddingValues ->
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White),
-            contentAlignment = Alignment.Center
+                .padding(paddingValues)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            CartaoDeVisitas()
+            items(mockProjects) { project ->
+                ProjectCard(project = project) {
+                    navController.navigate("project_detail/${project.id}")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun ProjectCard(project: Project, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(red = 238, green = 239, blue = 241, alpha = 255), // Cor de fundo do card
+            contentColor = Color(red = 12, green = 49, blue = 82) // Cor do texto
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = project.name, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = project.description, fontSize = 14.sp)
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ProjectDetailScreen(navController: NavHostController, projectId: Int?) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "Detalhes do Projeto") },
+                colors = getCustomTopAppBarColors(),
+                navigationIcon = {
+                    BackButton(onClick = { navController.popBackStack() })
+                }
+            )
+        },
+        containerColor = Color.White
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "ID do Projeto: $projectId",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(red = 12, green = 49, blue = 82)
+            )
         }
     }
 }
