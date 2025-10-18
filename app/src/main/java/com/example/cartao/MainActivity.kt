@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CartaoDeVisitas() {
+fun CartaoDeVisitas(navController: NavHostController) {
     Card(
         modifier = Modifier
             .padding(16.dp),
