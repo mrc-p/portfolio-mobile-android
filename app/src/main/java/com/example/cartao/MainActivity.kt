@@ -124,7 +124,9 @@ fun CartaoDeVisitas(navController: NavHostController) {
                     .padding(horizontal = 24.dp, vertical = 24.dp)
             ) {
                 ContatoItem(R.drawable.baseline_phone_24, "(84) 996278664")
+                ContatoItem(R.drawable.ic_whatsapp, "(84) 996278664")
                 ContatoItem(R.drawable.outline_alternate_email_24, "marcos.paulo.spires@gmail.com")
+                ContatoItem(R.drawable.ic_discord, "mrk_s")
 
                 Spacer(modifier = Modifier.height(24.dp))
                 HorizontalDivider(
