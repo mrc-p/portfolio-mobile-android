@@ -1,12 +1,7 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        //  CORREÇÃO: Usar o repositório Google sem o filtro 'content'
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -21,4 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "cartao"
 include(":app")
- 
